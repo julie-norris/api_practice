@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, session, redirect
 import requests, json
 from us_states import postal_abbreviations
 
+
 app=Flask(__name__)
 
 
@@ -47,13 +48,14 @@ def translate_user_address():
 	Ids=[ocdState, ocdPlace]
 	
 	payload={'district-divisions': ','.join(Ids)}
-	print(payload)
+	
 	headers = {"Content-Type": "application/json"}
 	url = 'https://api.turbovote.org/elections/upcoming?'
 	r = requests.get(url, params=payload, headers=headers)
-	print(r.url)
+	
 	print(r.text)
-	return (r)
+	
+	return (r.text)
 
 
 	"""Returned elections are displayed to the user
