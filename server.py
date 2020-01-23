@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, session, redirect 
 import requests, json
+from us_states import postal_abbreviations
 
 app=Flask(__name__)
 
@@ -16,7 +17,7 @@ When someone visits the site you create, they will be presented with an address 
 def index():
 	"""Homepage"""
 
-	return render_template("address_form.html")
+	return render_template("address_form.html", states=postal_abbreviations)
 
 
 
@@ -24,7 +25,7 @@ def index():
 
 
 @app.route('/search', methods=['POST'])
-def get_address():
+def translate_user_address():
 	"""Translates the address submitted into OCD-IDs"""
 
 	"""setting information submitted from user to variable names"""
@@ -40,15 +41,18 @@ def get_address():
 	city=city.lower()
 	ocdState="ocd-division/country:us/state:"+ state
 	ocdPlace= ocdState + "/place:" + city
-
+	
 
 	"""Query the Democracy Works Elections API for upcoming elections for those OCD-IDs"""
-	payload={'district-divisions':[ocdState, ocdPlace]}
-	headers = {"Content-Type": "application/json"}
-	url = "https://api.turbovote.org/elections/upcoming?"
-	r = requests.get(url, params=payload, headers=headers)
-	#r=response.json()
+	Ids=[ocdState, ocdPlace]
 	
+	payload={'district-divisions': ','.join(Ids)}
+	print(payload)
+	headers = {"Content-Type": "application/json"}
+	url = 'https://api.turbovote.org/elections/upcoming?'
+	r = requests.get(url, params=payload, headers=headers)
+	print(r.url)
+	print(r.text)
 	return (r)
 
 
