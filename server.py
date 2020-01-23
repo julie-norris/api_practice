@@ -49,7 +49,7 @@ def translate_user_address():
 	
 	payload={'district-divisions': ','.join(Ids)}
 	
-	headers = {"Content-Type": "application/json"}
+	headers = {"Accept": "application/json"}
 	url = 'https://api.turbovote.org/elections/upcoming?'
 	r = requests.get(url, params=payload, headers=headers)
 	
