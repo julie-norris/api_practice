@@ -3,6 +3,7 @@ import requests, json
 from us_states import postal_abbreviations
 
 
+
 app=Flask(__name__)
 
 
@@ -52,18 +53,13 @@ def translate_user_address():
 	headers = {"Accept": "application/json"}
 	url = 'https://api.turbovote.org/elections/upcoming?'
 	r = requests.get(url, params=payload, headers=headers)
-	
-	print(r.text)
-	
-	return (r.text)
-
-
+	r=r.text
+	rslt=json.loads(r)
+	print (rslt)
 	"""Returned elections are displayed to the user
 	The results are formatted for the user"""
-@app.route('/election_results', methods=['GET'])
-def display_upcoming_elections():
 
-	return render_template(election_results.html, elections=r)
+	return render_template("election_results.html", rslt=rslt)
 
 
 
