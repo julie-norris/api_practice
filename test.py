@@ -5,15 +5,14 @@ import pytest
 import requests
 
 
-def test_file1_method1():
-	x=5
-	y=6
-	assert x+1 == y,"test failed"
-	assert x == y,"test failed"
-def test_file1_method2():
-	x=5
-	y=6
-	assert x+1 == y,"test failed" 
+#test 1: verify correct HTTP status code by executing an API call with valid required params; should return 2XX code
+
+#test 2: verify response payload??
+#test 3: verify response headers
+#test 4: verify correct application state - for GET requests, verify that there is no state change in the system
+
+#test 5: verify basic performance sanity
+
 
 
 

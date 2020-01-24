@@ -44,8 +44,9 @@ def translate_user_address():
 	"""using the requests module the OCD-IDs are added to the URL as the query string and the request is made on the API"""
 	r = requests.get(url, params=params, headers=headers)
 	r=r.text
-	if r == None:
-		return ("No upcoming elections near you!")
+	print (r)
+	if r == []:
+		print ("No upcoming elections near you!")
 	else:
 		rslt=json.loads(r)
 
