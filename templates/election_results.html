@@ -1,27 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
 <div>
-    <p>Upcoming Elections</p>
-  <table style="width: 60%%">
+    <h1>Upcoming Elections</h1>
+  <style>
+table {
+  border-style: double;
+  border-spacing: 1;
+  width: 100%;
+  border: 1px solid #000;
+}
+
+table td, table th {
+    border: 1px solid black;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+</style>
+<div>
+  <table>  
     {% if rslt %}
-    <tr>
+     <tr>
         {% for key in rslt.0 %}
         <th> {{ key }} </th>
         {% endfor %}
     </tr>
-    {% endif %}
-
-    <!-- table rows -->
+    
     {% for dict_item in rslt %}
-
     <tr>
         {% for value in dict_item.values() %}
-    
-        <td> {{ value }} </td>
-
+        <td> {{ value}} </td>
         {% endfor %}
-
     {% endfor %}
+    </tr>
+    {% endif %}
   </table>
 </div>  
 {% endblock %}
