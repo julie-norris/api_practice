@@ -5,6 +5,7 @@ from datetime import datetime
 
 
 
+
 app=Flask(__name__)
 
 
@@ -23,6 +24,8 @@ def translate_user_address():
 
 	"""set information submitted from user to variable names"""
 	city = request.form["city"]
+	if len(city) > 1:
+		"_".join(city)
 	state = request.form["state"]
 	
 	
