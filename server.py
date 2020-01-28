@@ -36,9 +36,9 @@ def translate_user_address():
 	
 
 	"""Query the Democracy Works Elections API for upcoming elections for those OCD-IDs"""
-	Ids=[ocdState, ocdPlace]
+	ids=[ocdState, ocdPlace]
 	
-	params={'district-divisions': ','.join(Ids)}
+	params={'district-divisions': ','.join(ids)}
 	
 	headers={"Accept": "application/json"}
 	url='https://api.turbovote.org/elections/upcoming?'
