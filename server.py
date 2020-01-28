@@ -5,6 +5,7 @@ from datetime import datetime
 
 
 
+
 app=Flask(__name__)
 
 
@@ -22,15 +23,16 @@ def translate_user_address():
 	"""Translates the address submitted into OCD-IDs"""
 
 	"""set information submitted from user to variable names"""
-	city = request.form["city"]
-	state = request.form["state"]
+	city=request.form["city"]
+	city=city.replace(" ", "_")
+	state=request.form["state"]
 	
 	
 	"""translate the address into OCD-IDs"""
-	state = state.lower()
-	city = city.lower()
-	ocdState = "ocd-division/country:us/state:"+ state
-	ocdPlace = ocdState + "/place:" + city
+	state=state.lower()
+	city=city.lower()
+	ocdState="ocd-division/country:us/state:"+ state
+	ocdPlace=ocdState + "/place:" + city
 	
 
 	"""Query the Democracy Works Elections API for upcoming elections for those OCD-IDs"""
@@ -38,11 +40,11 @@ def translate_user_address():
 	
 	params={'district-divisions': ','.join(Ids)}
 	
-	headers = {"Accept": "application/json"}
-	url = 'https://api.turbovote.org/elections/upcoming?'
+	headers={"Accept": "application/json"}
+	url='https://api.turbovote.org/elections/upcoming?'
 
 	"""using the requests module the OCD-IDs are added to the URL as the query string and the request is made on the API"""
-	r = requests.get(url, params=params, headers=headers)
+	r=requests.get(url, params=params, headers=headers)
 	r=r.text
 	
 	if r == []:
