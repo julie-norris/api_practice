@@ -27,7 +27,7 @@ def test_status_code_200():
 	assert r.status_code == 200
 
 def test_status_code_invalid_city():
-	"""test with invalid input -- city not exist"""
+	"""**THIS TEST FAILS ** test with invalid input -- city not exist"""
 	city = "anteater"
 	state = "NY"
 	
@@ -72,7 +72,7 @@ def test_same_city_and_state():
 	
 	
 def test_invalid_inputs():
-	"""test with valid input that is an edge case, ie. city and state are the same"""
+	"""**THIS TEST FAILS***test with valid input that is an edge case, ie. city contains numbers"""
 	city = "3its2wrong"
 	state = "NY"
 	
