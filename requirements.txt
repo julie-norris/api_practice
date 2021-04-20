@@ -20,7 +20,7 @@ pandas==0.25.3
 Pillow==7.0.0
 pip-tools==4.1.0
 pluggy==0.8.1
-py==1.7.0
+py==1.10.0
 pycparser==2.19
 pygtrie==2.3
 Pyphen==0.9.5
